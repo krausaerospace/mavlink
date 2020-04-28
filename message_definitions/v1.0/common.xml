@@ -378,6 +378,8 @@
       <entry value="6" name="MAV_MOUNT_MODE_HOME_LOCATION">
         <description>Gimbal tracks home location</description>
       </entry>
+      <entry value="7" name="MAV_MOUNT_MODE_TRACK">
+        <description>Gimbal tracks object using it's on-board vision processor</description>
     </enum>
     <!-- gripper action enum -->
     <enum name="GRIPPER_ACTIONS">
