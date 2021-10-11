@@ -1659,25 +1659,15 @@
         <param index="7">Empty.</param>
       </entry>
       <!-- END of payload range (30000 to 30999) -->
-      <entry value="12613" name="MAV_CMD_SWARM_STUFF1" hasLocation="true" isDestination="false">
-        <description>Begin following a target</description>
-        <param index="1">Empty.</param>
+      <entry value="12613" name="MAV_CMD_SWARM_RADIUS" hasLocation="true" isDestination="false">
+        <description>Defines a radius about which to form a swarm.</description>
+        <param index="1" label="Radius" units="m">Radius</param>
         <param index="2">Empty.</param>
         <param index="3">Empty.</param>
         <param index="4">Empty.</param>
         <param index="5" label="Latitude" units="deg">Latitude.</param>
         <param index="6" label="Longitude" units="deg">Longitude.</param>
-        <param index="7" label="Altitude" units="m">Altitude.</param>
-      </entry>
-      <entry value="12614" name="MAV_CMD_SWARM_STUFF2" hasLocation="true" isDestination="false">
-        <description>Begin following a target</description>
-        <param index="1">Empty.</param>
-        <param index="2">Empty.</param>
-        <param index="3">Empty.</param>
-        <param index="4">Empty.</param>
-        <param index="5" label="Latitude" units="deg">Latitude.</param>
-        <param index="6" label="Longitude" units="deg">Longitude.</param>
-        <param index="7" label="Altitude" units="m">Altitude.</param>
+        <param index="7" label="MSL_Alt" units="m">MSL Altitude.</param>
       </entry>
       <!-- BEGIN user defined range (31000 to 31999) -->
       <entry value="31000" name="MAV_CMD_WAYPOINT_USER_1" hasLocation="true" isDestination="true">
@@ -5391,16 +5381,6 @@
       <description>Swarm 1.</description>
       <field type="uint8_t" name="id1">ID</field>
       <field type="uint8_t[128]" name="payload">Swarm stuff 1</field>
-    </message>
-    <message id="31323" name="SWARM_AWESOME_NEW_FEATURE2">
-      <description>Swarm 2.</description>
-      <field type="uint8_t" name="id2">ID</field>
-      <field type="uint8_t[128]" name="payload">Swarm stuff 2</field>
-    </message>
-    <message id="31324" name="SWARM_AWESOME_NEW_FEATURE3">
-      <description>Swarm 3.</description>
-      <field type="uint8_t" name="id3">ID</field>
-      <field type="uint8_t[128]" name="payload">Swarm stuff 3</field>
     </message>
 	
   </messages>
