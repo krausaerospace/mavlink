@@ -1667,7 +1667,7 @@
         <param index="4">Empty.</param>
         <param index="5" label="Latitude" units="deg">Latitude.</param>
         <param index="6" label="Longitude" units="deg">Longitude.</param>
-        <param index="7" label="MSL_Alt" units="m">MSL Altitude.</param>
+        <param index="7">Empty,></param>
       </entry>
       <!-- BEGIN user defined range (31000 to 31999) -->
       <entry value="31000" name="MAV_CMD_WAYPOINT_USER_1" hasLocation="true" isDestination="true">
