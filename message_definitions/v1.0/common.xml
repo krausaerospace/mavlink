@@ -5385,6 +5385,9 @@
       <field type="int32_t" name="lat" units="degE7">Latitude</field>
       <field type="int32_t" name="lon" units="degE7">Longitude</field>
       <field type="int32_t" name="altMSL" units="mm">MSL Altitude.</field>
+      <field type="int32_t" name="desired_lat" units="degE7">Desired Latitude</field>
+      <field type="int32_t" name="desired_lon" units="degE7">Desired Longitude</field>
+      <field type="int32_t" name="desired_altMSL" units="mm">Desired MSL Altitude.</field>
     </message>
 
   </messages>
