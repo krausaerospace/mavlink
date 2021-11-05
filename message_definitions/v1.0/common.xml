@@ -5358,6 +5358,29 @@
       <field type="uint8_t" name="payload_length">Length of the data transported in payload</field>
       <field type="uint8_t[128]" name="payload">Variable length payload. The payload length is defined by payload_length. The entire content of this block is opaque unless you understand the encoding specified by payload_type.</field>
     </message>
+    <message id="2820" name="SWARM_VEHICLE">
+      <description>Position of an aircraft in swarm.</description>
+      <field type="uint64_t" name="time_usec" units="us">Timestamp (UNIX Epoch time from GPS, if unknown use 0).</field>
+      <field type="uint16_t" name="aircraft_id">Aircraft ID</field>
+      <field type="uint16_t" name="squadron_id">Squadron ID</field>
+      <field type="uint8_t" name="state_nav" enum="SWARM_STATE_NAV">Navigation State</field>
+      <field type="int16_t" name="speed" units="m/s">Speed</field>
+      <field type="float" name="cog" units="deg">Course over Ground (GPS heading)</field>
+      <field type="float" name="radius_effective" units="m">Effective Radius of radio distance. Includes loiter radius and any overlap margin.</field>
+      <field type="int32_t" name="lat" units="degE7">Latitude</field>
+      <field type="int32_t" name="lon" units="degE7">Longitude</field>
+      <field type="float" name="altMSL" units="m">MSL Altitude.</field>
+      <field type="int32_t" name="lat_target" units="degE7">Target Latitude</field>
+      <field type="int32_t" name="lon_target" units="degE7">Target Longitude</field>
+      <field type="float" name="altMSL_target" units="m">Target MSL Altitude.</field>    
+    </message>
+    <message id="2821" name="SWARM_COMMLINK_STATUS">
+      <description>Status of a swarm aircraft's communications link.</description>
+      <field type="uint16_t" name="aircraft_id_self">This Aircraft ID</field>
+      <field type="uint16_t" name="aircraft_id_external">External Aircraft ID</field>
+      <field type="float" name="ROSR">Radio Overlap of Shortest Radius</field>
+      <field type="uint16_t" name="last_contact" units="s"> </field>
+    </message>
     <!-- Rover specific messages -->
     <message id="9000" name="WHEEL_DISTANCE">
       <description>Cumulative distance traveled for each reported wheel.</description>
@@ -5381,29 +5404,6 @@
       <field type="uint8_t" name="id" instance="true">Hygrometer ID</field>
       <field type="int16_t" name="temperature" units="cdegC">Temperature</field>
       <field type="uint16_t" name="humidity" units="c%">Humidity</field>
-    </message>
-    <message id="31322" name="SWARM_VEHICLE">
-      <description>Position of an aircraft in swarm.</description>
-      <field type="uint64_t" name="time_usec" units="us">Timestamp (UNIX Epoch time from GPS, if unknown use 0).</field>
-      <field type="uint16_t" name="aircraft_id">Aircraft ID</field>
-      <field type="uint16_t" name="squadron_id">Squadron ID</field>
-      <field type="uint8_t" name="state_nav" enum="SWARM_STATE_NAV">Navigation State</field>
-      <field type="int16_t" name="speed" units="m/s">Speed</field>
-      <field type="float" name="cog" units="deg">Course over Ground (GPS heading)</field>
-      <field type="float" name="radius_effective" units="m">Effective Radius of radio distance. Includes loiter radius and any overlap margin.</field>
-      <field type="int32_t" name="lat" units="degE7">Latitude</field>
-      <field type="int32_t" name="lon" units="degE7">Longitude</field>
-      <field type="float" name="altMSL" units="m">MSL Altitude.</field>
-      <field type="int32_t" name="lat_target" units="degE7">Target Latitude</field>
-      <field type="int32_t" name="lon_target" units="degE7">Target Longitude</field>
-      <field type="float" name="altMSL_target" units="m">Target MSL Altitude.</field>    
-    </message>
-    <message id="31323" name="SWARM_COMMLINK_STATUS">
-      <description>Status of a swarm aircraft's communications link.</description>
-      <field type="uint16_t" name="aircraft_id_self">This Aircraft ID</field>
-      <field type="uint16_t" name="aircraft_id_external">External Aircraft ID</field>
-      <field type="float" name="ROSR">Radio Overlap of Shortest Radius</field>
-      <field type="uint16_t" name="last_contact" units="s"> </field>
     </message>
   </messages>
 </mavlink>
