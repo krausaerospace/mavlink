@@ -5161,6 +5161,7 @@
       <field type="int32_t" name="lat_target" units="degE7">Target Latitude</field>
       <field type="int32_t" name="lon_target" units="degE7">Target Longitude</field>
       <field type="float" name="altMSL_target" units="m">Target MSL Altitude.</field>    
+      <field type="float" name="fo" units="m">Target MSL Altitude.</field>    
     </message>
     <message id="2821" name="SWARM_COMMLINK_STATUS">
       <description>Status of a swarm aircraft's communications link.</description>
