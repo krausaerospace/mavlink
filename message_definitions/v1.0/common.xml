@@ -2289,6 +2289,9 @@
       <entry value="2" name="MAV_MISSION_TYPE_RALLY">
         <description>Specifies the rally points for the vehicle. Rally points are alternative RTL points. Items are MAV_CMD_NAV_RALLY_POINT rally point items.</description>
       </entry>
+      <entry value="3" name="MAV_MISSION_TYPE_SWARM_ROI">
+        <description>Specifies Swarm Region-of-Interest. Items are either MAV_CMD_NAV_FENCE_POLYGON_VERTEX_INCLUSION or MAV_CMD_NAV_FENCE_CIRCLE_INCLUSION.</description>
+      </entry>
       <entry value="255" name="MAV_MISSION_TYPE_ALL">
         <description>Only used in MISSION_CLEAR_ALL to clear all mission types.</description>
       </entry>
@@ -5161,6 +5164,7 @@
       <field type="int32_t" name="lat_target" units="degE7">Target Latitude</field>
       <field type="int32_t" name="lon_target" units="degE7">Target Longitude</field>
       <field type="float" name="altMSL_target" units="m">Target MSL Altitude.</field>
+      <field type="uint32_t" name="ROI_crc">Region-of-Interest 32bit CRC. Zero indicates unknown. If a valid CRC computes to zero, use 1. This CRC is used to verify an ROI that is actively loaded. It is used to keep the swarm in sync without having to constantly send it to the mesh to verify.</field>
     </message>
     <message id="2821" name="SWARM_COMMLINK_STATUS">
       <description>Status of a swarm aircraft's communications link.</description>
