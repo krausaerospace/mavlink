@@ -5180,6 +5180,7 @@
       <field type="int32_t" name="lat" units="degE7">Latitude</field>
       <field type="int32_t" name="lon" units="degE7">Longitude</field>
       <field type="float" name="altMSL" units="m">MSL Altitude</field>
+      <field type="float[16]" name="coverage_polys" units="m">Swarm Coverage Area modeled as an octogon.</field>
     </message>
     <!-- Rover specific messages -->
     <message id="9000" name="WHEEL_DISTANCE">
