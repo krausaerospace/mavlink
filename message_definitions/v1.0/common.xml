@@ -5182,6 +5182,21 @@
       <field type="float" name="altMSL" units="m">MSL Altitude</field>
       <field type="float[16]" name="coverage_polys" units="m">Swarm Coverage Area modeled as an octogon.</field>
     </message>
+     <message id="2823" name="SWARM_POINT">
+      <description>A swarm point. Used to set a swarm ROI point within from GCS. Also used to return a point from MAV GCS.</description>
+      <field type="uint8_t" name="target_system">System ID.</field>
+      <field type="uint8_t" name="target_component">Component ID.</field>
+      <field type="uint8_t" name="idx">Point index (first point is 1, 0 is for return point).</field>
+      <field type="uint8_t" name="count">Total number of points (for sanity checking).</field>
+      <field type="float" name="lat" units="deg">Latitude of point.</field>
+      <field type="float" name="lng" units="deg">Longitude of point.</field>
+    </message>
+    <message id="2824" name="SWARM_FETCH_POINT">
+      <description>Request a current swarm point from MAV. Mostly intended for GCS.</description>
+      <field type="uint8_t" name="target_system">System ID.</field>
+      <field type="uint8_t" name="target_component">Component ID.</field>
+      <field type="uint8_t" name="idx">Point index (first point is 1, 0 is for return point).</field>
+    </message>
     <!-- Rover specific messages -->
     <message id="9000" name="WHEEL_DISTANCE">
       <description>Cumulative distance traveled for each reported wheel.</description>
