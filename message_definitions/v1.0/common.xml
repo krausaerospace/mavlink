@@ -1621,16 +1621,6 @@
         <param index="7">Empty.</param>
       </entry>
       <!-- END of payload range (30000 to 30999) -->
-      <entry value="12613" name="MAV_CMD_SWARM_RADIUS" hasLocation="true" isDestination="false">
-        <description>Defines a radius about which to form a swarm.</description>
-        <param index="1" label="Radius" units="m">Radius</param>
-        <param index="2">Empty.</param>
-        <param index="3">Empty.</param>
-        <param index="4">Empty.</param>
-        <param index="5" label="Latitude" units="deg">Latitude.</param>
-        <param index="6" label="Longitude" units="deg">Longitude.</param>
-        <param index="7">Empty.</param>
-      </entry>
       <!-- BEGIN user defined range (31000 to 31999) -->
       <entry value="31000" name="MAV_CMD_WAYPOINT_USER_1" hasLocation="true" isDestination="true">
         <description>User defined waypoint item. Ground Station will show the Vehicle as flying through this item.</description>
@@ -3176,6 +3166,37 @@
       <entry value="2048" name="AIS_FLAGS_VALID_CALLSIGN"/>
       <entry value="4096" name="AIS_FLAGS_VALID_NAME"/>
     </enum>
+    <enum name="SWARM_VEHICLE_STATE">
+      <description>Status of what an individual swarm vehicle is doing.</description>
+      <entry value="0" name="SWARM_VEHICLE_STATE_UNKNOWN"> <description>Unknown.</description> </entry>
+      <entry value="1" name="SWARM_VEHICLE_STATE_INGRESSING_TO_MESH"> <description>Currently traveling to join the mesh network.</description> </entry>
+      <entry value="2" name="SWARM_VEHICLE_STATE_LOST_COMMS"> <description>Have lost contact with the mesh and unable to sync and unable to provide service.</description> </entry>
+      <entry value="3" name="SWARM_VEHICLE_STATE_ON_STATION"> <description>Situation NORMAL, on station providing service</description> </entry>
+      <entry value="4" name="SWARM_VEHICLE_STATE_ON_STATION_BUT_REQUESTION_RTB_SOON"> <description>On station providing service but requesting Return to Base soon, will need to leave the on station point within 30min. This allows time for an additional vehicle to join the swarm to take it's place without a gap in coverage. Next expected state is ON_STATION_BUT_REQUESTION_RTB_NOW.</description> </entry>
+      <entry value="5" name="SWARM_VEHICLE_STATE_ON_STATION_BUT_REQUESTION_RTB_NOW"> <description>On station providing service but will be switching to Return to Base in less than 2 minutes. Next expected state is EGRESSING_MESH_RTB.</description> </entry>
+      <entry value="6" name="SWARM_VEHICLE_STATE_WAS_ON_STATION_BUT_RELOCATING"> <description>Was recently on station but mesh topography has changed and are currently in transit to new on station point.</description> </entry>
+      <entry value="7" name="SWARM_VEHICLE_STATE_EGRESSING_MESH_RTB"> <description>Leaving mesh to return to base. Is still acting as mesh node providing service on the way back.</description> </entry>
+      <entry value="8" name="SWARM_VEHICLE_STATE_RTB"> <description>Returning to base. May or may-not be providing service on the way back.</description> </entry>
+      <entry value="9" name="SWARM_VEHICLE_STATE_READY_TO_JOIN_MESH"> <description>Not providing service but is able and ready to join.</description> </entry>
+      <entry value="10" name="SWARM_VEHICLE_STATE_NOT_READY"> <description>Not ready, not providing service. For air vehicles this means we're powered up on the ground and likely performing ground checks. Next expected state is likely READY_TO_JOIN_MESH.</description> </entry>
+      <entry value="11" name="SWARM_VEHICLE_GCS"> <description>This is the Ground Control Station.</description> </entry>
+    </enum>
+    <enum name="SWARM_ROI_STATUS">
+      <description>Status of the ROI from the swarm vehicle's perspective.</description>
+      <entry value="0" name="SWARM_ROI_STATUS_UNKNOWN"/>
+      <entry value="1" name="SWARM_ROI_STATUS_INVALID"/>
+      <entry value="2" name="SWARM_ROI_STATUS_NEEDS_UPDATE"> <description>Has a valid ROI but it's old. We've seen another CRC with a newer timestamp.</description> </entry>
+      <entry value="3" name="SWARM_ROI_STATUS_OK"> <description>Has a valid and up-to-date ROI.</description> </entry>
+    </enum>
+    <enum name="SWARM_COVERAGE_STATUS">
+      <description>Status of mesh network coverage. Ideally the whole swarm should be generating the same status.</description>
+      <entry value="0" name="SWARM_COVERAGE_STATUS_UNKNOWN"/>
+      <entry value="1" name="SWARM_COVERAGE_STATUS_ROI_IS_NOT_READY"> <description>ROI is not ready so a coverage status is unable to be determined.</description> </entry>
+      <entry value="2" name="SWARM_COVERAGE_STATUS_NOT_ENOUGH_VEHICLES"> <description>Swarm mesh has insufficient vehicle resources to cover the ROI.</description> </entry>
+      <entry value="3" name="SWARM_COVERAGE_STATUS_MINIMUM"> <description>Swarm mesh currently has the minimum resources to cover the ROI. However, network is expected to have breif gaps in service coverage.</description> </entry>
+      <entry value="4" name="SWARM_COVERAGE_STATUS_QOS_GOOD"> <description>Swarm mesh currently has enough vehicle resources to cover the ROI sufficiently to satisfy Quality of Service requirement.</description> </entry>
+      <entry value="5" name="SWARM_COVERAGE_STATUS_QOS_VERY_GOOD"> <description>Swarm mesh currently has enough vehicle resources to cover the ROI sufficiently to satisfy MORE than the Quality of Service requirement to better handle unexpected loss of mesh node(s).</description> </entry> -->
+    </enum>
     <enum name="MAV_WINCH_STATUS_FLAG" bitmask="true">
       <description>Winch status flags used in WINCH_STATUS</description>
       <entry value="1" name="MAV_WINCH_STATUS_HEALTHY">
@@ -3200,11 +3221,6 @@
       <entry value="5" name="MAG_CAL_FAILED"/>
       <entry value="6" name="MAG_CAL_BAD_ORIENTATION"/>
       <entry value="7" name="MAG_CAL_BAD_RADIUS"/>
-    </enum>
-    <enum name="SWARM_STATE_NAV">
-      <entry value="0" name="INGRESSING_TO_MESH"/>
-      <entry value="1" name="ON_STATION"/>
-      <entry value="2" name="PROCEEDING_HOME"/>
     </enum>
   </enums>
   <messages>
@@ -5161,12 +5177,10 @@
     </message>
     <message id="2820" name="SWARM_VEHICLE">
       <description>Position of an aircraft in swarm.</description>
-      <field type="uint64_t" name="time_usec" units="us">Timestamp (UNIX Epoch time from GPS, if unknown use 0).</field>
+      <field type="uint32_t" name="timestamp" units="s">UTC timestamp of when this packet was generated. Seconds since 1970, or 0 if not available.</field>
       <field type="uint16_t" name="aircraft_id">Aircraft ID</field>
       <field type="uint16_t" name="squadron_id">Squadron ID</field>
-      <field type="uint8_t" name="state_nav" enum="SWARM_STATE_NAV">Navigation State</field>
-      <field type="int16_t" name="speed" units="m/s">Speed</field>
-      <field type="float" name="cog" units="deg">Course over Ground (GPS heading)</field>
+      <field type="uint8_t" name="state_nav" enum="SWARM_VEHICLE_STATE">Staus of vehicle</field>
       <field type="float" name="effective_radius" units="m">Effective Radius of radio distance. Includes loiter radius and any overlap margin.</field>
       <field type="int32_t" name="lat" units="degE7">Latitude</field>
       <field type="int32_t" name="lon" units="degE7">Longitude</field>
@@ -5174,38 +5188,23 @@
       <field type="int32_t" name="lat_target" units="degE7">Target Latitude</field>
       <field type="int32_t" name="lon_target" units="degE7">Target Longitude</field>
       <field type="float" name="altMSL_target" units="m">Target MSL Altitude.</field>
+    </message>
+    <message id="2821" name="SWARM_VEHICLE_SLOW">
+      <description>Position of an aircraft in swarm with data that updates less often.</description>
+      <field type="uint32_t" name="timestamp" units="s">UTC timestamp of when this packet was generated. Seconds since 1970, or 0 if not available.</field>
+      <field type="uint16_t" name="aircraft_id">Aircraft ID</field>
+      <field type="uint16_t" name="squadron_id">Squadron ID</field>
+      <field type="uint8_t" name="state_nav" enum="SWARM_VEHICLE_STATE">Staus of vehicle</field>
+      <field type="uint8_t" name="state_coverage" enum="SWARM_COVERAGE_STATUS">Staus coverage area</field>
+      <field type="uint8_t" name="state_roi" enum="SWARM_ROI_STATUS">Staus of vehicle's ROI</field>
+      <field type="uint16_t" name="speed" units="m/s">Speed</field>
+      <field type="uint16_t" name="cog" units="cdeg">Course over Ground (GPS heading). Range: 0-35999</field>
+      <field type="float" name="effective_radius" units="m">Effective Radius of radio distance. Includes loiter radius and any overlap margin.</field>
+      <field type="int32_t" name="lat_target" units="degE7">Target Latitude</field>
+      <field type="int32_t" name="lon_target" units="degE7">Target Longitude</field>
+      <field type="float" name="altMSL_target" units="m">Target MSL Altitude.</field>
       <field type="uint32_t" name="ROI_crc">Region-of-Interest 32bit CRC. Zero indicates unknown. If a valid CRC computes to zero, use 1. This CRC is used to verify an ROI that is actively loaded. It is used to keep the swarm in sync without having to constantly send it to the mesh to verify.</field>
-    </message>
-    <message id="2821" name="SWARM_COMMLINK_STATUS">
-      <description>Status of a swarm aircraft's communications link.</description>
-      <field type="uint16_t" name="aircraft_id_self">This Aircraft ID</field>
-      <field type="uint16_t" name="aircraft_id_external">External Aircraft ID</field>
-      <field type="float" name="ROSER">Radio Overlap of Shortest Effective Radius</field>
-      <field type="uint16_t" name="last_contact" units="s"> </field>
-    </message>
-    <message id="2822" name="SWARM_COVERAGE_AREA">
-      <description>Position of the swarm coverage area (NOT the aircraft).</description>
-      <field type="uint64_t" name="time_usec" units="us">Timestamp (UNIX Epoch time from GPS, if unknown use 0).</field>
-      <field type="float" name="coverage_radius" units="m">Swarm Coverage Area modeled as a radius.</field>
-      <field type="int32_t" name="lat" units="degE7">Latitude</field>
-      <field type="int32_t" name="lon" units="degE7">Longitude</field>
-      <field type="float" name="altMSL" units="m">MSL Altitude</field>
-      <field type="float[16]" name="coverage_polys" units="m">Swarm Coverage Area modeled as an octogon.</field>
-    </message>
-     <message id="2823" name="SWARM_POINT">
-      <description>A swarm point. Used to set a swarm ROI point within from GCS. Also used to return a point from MAV GCS.</description>
-      <field type="uint8_t" name="target_system">System ID.</field>
-      <field type="uint8_t" name="target_component">Component ID.</field>
-      <field type="uint8_t" name="idx">Point index (first point is 1, 0 is for return point).</field>
-      <field type="uint8_t" name="count">Total number of points (for sanity checking).</field>
-      <field type="float" name="lat" units="deg">Latitude of point.</field>
-      <field type="float" name="lng" units="deg">Longitude of point.</field>
-    </message>
-    <message id="2824" name="SWARM_FETCH_POINT">
-      <description>Request a current swarm point from MAV. Mostly intended for GCS.</description>
-      <field type="uint8_t" name="target_system">System ID.</field>
-      <field type="uint8_t" name="target_component">Component ID.</field>
-      <field type="uint8_t" name="idx">Point index (first point is 1, 0 is for return point).</field>
+      <field type="uint32_t" name="ROI_timestamp" units="s">UTC timestamp of ROI generation. Seconds since 1970, or 0 if not available.</field>
     </message>
     <!-- Rover specific messages -->
     <message id="9000" name="WHEEL_DISTANCE">
