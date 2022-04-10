@@ -5217,6 +5217,14 @@
       <field type="uint32_t" name="ROI_crc">Region-of-Interest 32bit CRC. Zero indicates unknown. If a valid CRC computes to zero, use 1. This CRC is used to verify an ROI that is actively loaded. It is used to keep the swarm in sync without having to constantly send it to the mesh to verify.</field>
       <field type="uint32_t" name="ROI_timestamp" units="s">UTC timestamp of ROI generation. Seconds since 1970, or 0 if not available.</field>
     </message>
+    <message id="2822" name="SWARM_VEHICLE_ROI">
+      <description>Region of Interest points. Array of int32_t lat/lng pairs of polygon points.</description>
+      <field type="uint32_t" name="id_target">Aircraft ID of intended target. Use 0 for broadcast.</field>
+      <field type="uint32_t" name="crc">32bit CRC of ROI of the complete polygon.</field>
+      <field type="uint32_t" name="timestamp_s" units="s">UTC timestamp of ROI generation. Seconds since 1970, or 0 if not available.</field>
+      <field type="uint32_t" name="point_count">Number of points in the ROI polygon. One point is considered an int32 pair. This value must be >= 3 to be a valid polygon.</field>
+      <field type="int32_t[56]" name="points" units="degE7">Latitude and Longitude int32 pairs. One polygon point is two of these enteries. Even indexed values are latitude, odd are longitude.</field>
+    </message>
     <!-- Rover specific messages -->
     <message id="9000" name="WHEEL_DISTANCE">
       <description>Cumulative distance traveled for each reported wheel.</description>
