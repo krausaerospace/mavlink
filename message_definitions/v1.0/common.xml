@@ -5705,7 +5705,7 @@
       <field type="float" name="read_speed" units="MiB/s">Read speed.</field>
       <field type="float" name="write_speed" units="MiB/s">Write speed.</field>
       <extensions/>
-      <field type="uint8_t" name="type" enum="STORAGE_TYPE">Type of storage</field>
+      <field type="uint8_t" name="type">Type of storage</field>
       <field type="char[32]" name="name">Textual storage name to be used in UI (microSD 1, Internal Memory, etc.) This is a NULL terminated string. If it is exactly 32 characters long, add a terminating NULL. If this string is empty, the generic type is shown to the user.</field>
     </message>
     <message id="262" name="CAMERA_CAPTURE_STATUS">

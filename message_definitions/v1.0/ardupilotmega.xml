@@ -1683,7 +1683,7 @@
       <description>Reply from secure command.</description>
       <field type="uint32_t" name="sequence">Sequence ID from request.</field>
       <field type="uint32_t" name="operation" enum="SECURE_COMMAND_OP">Operation that was requested.</field>
-      <field type="uint8_t" name="result" enum="MAV_RESULT">Result of command.</field>
+      <field type="uint8_t" name="result">Result of command.</field>
       <field type="uint8_t" name="data_length">Data length.</field>
       <field type="uint8_t[220]" name="data">Reply data.</field>
     </message>
