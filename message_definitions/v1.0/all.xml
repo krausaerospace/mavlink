@@ -39,6 +39,7 @@
     commands: 50000 - 50099
   -->
   <include>cubepilot.xml</include>
+  <include>kha.xml</include>
   <include>csAirLink.xml</include>
   <!-- csAirLink.xml range of IDs:
     messages: 52000 - 52099
