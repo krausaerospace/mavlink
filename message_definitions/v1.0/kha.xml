@@ -99,6 +99,19 @@
         <description>Swarm mesh currently has enough vehicle resources to cover the ROI sufficiently to satisfy MORE than the Quality of Service requirement to better handle unexpected loss of mesh node(s).</description>
       </entry>
     </enum>
+
+    <enum name="SWARM_NODE_CAPABILITY" bitmask="true">
+      <description>Bitmask of node swarming capabilities. If a bit is set, the node supports this capability.</description>
+      <entry value="1" name="SWARM_NODE_CAPABILITY_ROI_IN">
+        <description>Node supports reading SWARM_VEHICLE_ROI message</description>
+      </entry>
+      <entry value="2" name="SWARM_NODE_CAPABILITY_ROI_OUT">
+        <description>Node supports sending SWARM_VEHICLE_ROI message</description>
+      </entry>
+      <entry value="4" name="SWARM_NODE_CAPABILITY_CAN_REPOSITION">
+        <description>Node supports the ability to change the position of the node by commanding it to do so</description>
+      </entry>
+    </enum>
   </enums>
 
 
@@ -137,6 +150,7 @@
       <field type="uint8_t" name="vehicle_type" enum="SWARM_VEHICLE_TYPE">Swarm Vehicle Type</field>
       <field type="uint32_t" name="ROI_crc">Region-of-Interest 32bit CRC. Zero indicates unknown. If a valid CRC computes to zero, use 1. This CRC is used to verify an ROI that is actively loaded. It is used to keep the swarm in sync without having to constantly send it to the mesh to verify.</field>
       <field type="uint32_t" name="ROI_timestamp" units="s">UTC timestamp of ROI generation. Seconds since 1970, or 0 if not available.</field>
+      <field type="uint64_t" name="capabilities" enum="SWARM_NODE_CAPABILITY" display="bitmask">Bitmap of capabilities</field>
     </message>
 
     <message id="2822" name="SWARM_VEHICLE_ROI">
