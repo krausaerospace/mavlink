@@ -45,6 +45,7 @@
         <description>This is the Ground Control Station.</description>
       </entry>
     </enum>
+
     <enum name="SWARM_VEHICLE_TYPE">
       <description>Type of the vehicle that is swarming. Sample types are fixed-wing, copter, tank, jeep, human.</description>
       <entry value="0" name="UNKNOWN">
@@ -66,6 +67,7 @@
         <description>Human</description>
       </entry>
     </enum>
+
     <enum name="SWARM_ROI_STATUS">
       <description>Status of the ROI from the swarm vehicle's perspective.</description>
       <entry value="0" name="SWARM_ROI_STATUS_UNKNOWN"/>
@@ -77,6 +79,7 @@
         <description>Has a valid and up-to-date ROI.</description>
       </entry>
     </enum>
+
     <enum name="SWARM_COVERAGE_STATUS">
       <description>Status of mesh network coverage. Ideally the whole swarm should be generating the same status.</description>
       <entry value="0" name="SWARM_COVERAGE_STATUS_UNKNOWN"/>
@@ -98,6 +101,8 @@
     </enum>
   </enums>
 
+
+
   <messages>
     <message id="2820" name="SWARM_VEHICLE">
       <description>Position of an aircraft in swarm.</description>
@@ -114,6 +119,7 @@
       <field type="float" name="altMSL_target" units="m">Target MSL Altitude.</field>
       <field type="uint8_t" name="vehicle_type" enum="SWARM_VEHICLE_TYPE">Swarm Vehicle Type</field>
     </message>
+
     <message id="2821" name="SWARM_VEHICLE_SLOW">
       <description>Position of an aircraft in swarm with data that updates less often.</description>
       <field type="uint32_t" name="timestamp" units="s">UTC timestamp of when this packet was generated. Seconds since 1970, or 0 if not available.</field>
@@ -132,6 +138,7 @@
       <field type="uint32_t" name="ROI_crc">Region-of-Interest 32bit CRC. Zero indicates unknown. If a valid CRC computes to zero, use 1. This CRC is used to verify an ROI that is actively loaded. It is used to keep the swarm in sync without having to constantly send it to the mesh to verify.</field>
       <field type="uint32_t" name="ROI_timestamp" units="s">UTC timestamp of ROI generation. Seconds since 1970, or 0 if not available.</field>
     </message>
+
     <message id="2822" name="SWARM_VEHICLE_ROI">
       <description>Region of Interest points. Array of int32_t lat/lng pairs of polygon points.</description>
       <field type="uint32_t" name="aircraft_id">Aircraft ID. Use 0 for broadcast.</field>
