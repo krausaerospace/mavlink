@@ -96,6 +96,37 @@
         <description>Swarm mesh currently has enough vehicle resources to cover the ROI sufficiently to satisfy MORE than the Quality of Service requirement to better handle unexpected loss of mesh node(s).</description>
       </entry>
     </enum>
+    <enum name="AIRSPEEDS_FLAGS">
+      <description>Status of AIRSPEEDS</description>
+      <description>These encode the sensors whose status is sent as part of the SYS_STATUS message.</description>
+      <entry value="1" name="AIRSPEEDS_FLAGS_AIRSPEED1_ENABLED_TO_USE">
+        <description>0x01 Airspeed 1 Enabled to Use</description>
+      </entry>
+      <entry value="2" name="AIRSPEEDS_FLAGS_AIRSPEED1_HEALTHY">
+        <description>0x02 Airspeed 1 is Healthy</description>
+      </entry>
+      <entry value="4" name="AIRSPEEDS_FLAGS_AIRSPEED1_IS_PRIMARY">
+        <description>0x04 Airspeed 1 is Primary Sensor</description>
+      </entry>
+      <entry value="8" name="AIRSPEEDS_FLAGS_AIRSPEED2_ENABLED_TO_USE">
+        <description>0x08 Airspeed 2 Enabled to Use</description>
+      </entry>
+      <entry value="16" name="AIRSPEEDS_FLAGS_AIRSPEED2_HEALTHY">
+        <description>0x10 Airspeed 2 is Healthy</description>
+      </entry>
+      <entry value="32" name="AIRSPEEDS_FLAGS_AIRSPEED2_IS_PRIMARY">
+        <description>0x20 Airspeed 2 is Primary Sensor</description>
+      </entry>
+      <entry value="64" name="AIRSPEEDS_FLAGS_AIRSPEED3_ENABLED_TO_USE">
+        <description>0x40 Airspeed 3 Enabled to Use</description>
+      </entry>
+      <entry value="128" name="AIRSPEEDS_FLAGS_AIRSPEED3_HEALTHY">
+        <description>0x80 Airspeed 3 is Healthy</description>
+      </entry>
+      <entry value="256" name="AIRSPEEDS_FLAGS_AIRSPEED3_IS_PRIMARY">
+        <description>0x100 Airspeed 3 is Primary Sensor</description>
+      </entry>
+    </enum>
   </enums>
 
   <messages>
@@ -139,6 +170,13 @@
       <field type="uint32_t" name="timestamp_s" units="s">UTC timestamp of ROI generation. Seconds since 1970, or 0 if not available.</field>
       <field type="uint32_t" name="point_count">Number of points in the ROI polygon. One point is considered an int32 pair. This value must be &gt;= 3 to be a valid polygon.</field>
       <field type="int32_t[56]" name="points" units="degE7">Latitude and Longitude int32 pairs. One polygon point is two of these enteries. Even indexed values are latitude, odd are longitude.</field>
+    </message>
+    <message id="131301" name="AIRSPEEDS">
+      <description>All Airspeeds</description>
+      <field type="uint16_t" name="flags" enum="AIRSPEEDS_FLAGS">Status flags of the Airspeeds</field>
+      <field type="float" name="airspeed1" units="m/s">Vehicle airspeed 1 speed in form appropriate for vehicle type. For standard aircraft this is typically calibrated airspeed (CAS) or indicated airspeed (IAS) - either of which can be used by a pilot to estimate stall speed.</field>
+      <field type="float" name="airspeed2" units="m/s">Vehicle airspeed 2 speed in form appropriate for vehicle type. For standard aircraft this is typically calibrated airspeed (CAS) or indicated airspeed (IAS) - either of which can be used by a pilot to estimate stall speed.</field>
+      <field type="float" name="airspeed3" units="m/s">Vehicle airspeed 3 speed in form appropriate for vehicle type. For standard aircraft this is typically calibrated airspeed (CAS) or indicated airspeed (IAS) - either of which can be used by a pilot to estimate stall speed.</field>
     </message>
   </messages>
 </mavlink>
