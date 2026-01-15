@@ -96,7 +96,7 @@
         <description>Swarm mesh currently has enough vehicle resources to cover the ROI sufficiently to satisfy MORE than the Quality of Service requirement to better handle unexpected loss of mesh node(s).</description>
       </entry>
     </enum>
-    <enum name="AIRSPEEDS_FLAGS">
+    <enum name="AIRSPEEDS_FLAGS" bitmask="true">
       <description>Status flags in msg AIRSPEEDS</description>
       <entry value="1" name="AIRSPEEDS_FLAGS_AIRSPEED1_ENABLED_TO_USE">
         <description>0x01 Airspeed 1 Enabled to Use</description>
