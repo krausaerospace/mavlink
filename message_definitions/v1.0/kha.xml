@@ -9,7 +9,7 @@
     <enum name="MAV_CMD">
       <entry value="13130" name="MAV_CMD_KHA_LATENCY_CHECK" hasLocation="false" isDestination="false">
         <description>For round trip latency check</description>
-        <param index="2">Empty.</param>
+        <param index="1">Empty.</param>
         <param index="2">Empty.</param>
         <param index="3">Empty.</param>
         <param index="4">Empty.</param>
@@ -19,7 +19,7 @@
       </entry>
       <entry value="13131" name="MAV_CMD_KHA_TRIGGER_GCS_FAILSAFE" hasLocation="false" isDestination="false">
         <description>Trigger a GCS failsafe</description>
-        <param index="2">Empty.</param>
+        <param index="1">Empty.</param>
         <param index="2">Empty.</param>
         <param index="3">Empty.</param>
         <param index="4">Empty.</param>
@@ -29,7 +29,7 @@
       </entry>
       <entry value="13132" name="MAV_CMD_KHA_REQUEST_ADSB_ICAO_ID" hasLocation="false" isDestination="false">
         <description>Request ADSB ICAO ID</description>
-        <param index="2">Empty.</param>
+        <param index="1">Empty.</param>
         <param index="2">Empty.</param>
         <param index="3">Empty.</param>
         <param index="4">Empty.</param>
