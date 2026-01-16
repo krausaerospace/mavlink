@@ -150,6 +150,7 @@
       </entry>
     </enum>
   </enums>
+  
   <messages>
     <message id="2820" name="SWARM_VEHICLE">
       <description>Position of an aircraft in swarm.</description>
