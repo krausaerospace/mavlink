@@ -6,6 +6,38 @@
   <!-- mavlink ID range: 131300 - 131399                              -->
   <include>common.xml</include>
   <enums>
+    <enum name="MAV_CMD">
+      <entry value="13130" name="MAV_CMD_KHA_LATENCY_CHECK" hasLocation="false" isDestination="false">
+        <description>For round trip latency check</description>
+        <param index="1">Empty.</param>
+        <param index="2">Empty.</param>
+        <param index="3">Empty.</param>
+        <param index="4">Empty.</param>
+        <param index="5">Empty.</param>
+        <param index="6">Empty.</param>
+        <param index="7">Empty.</param>
+      </entry>
+      <entry value="13131" name="MAV_CMD_KHA_TRIGGER_GCS_FAILSAFE" hasLocation="false" isDestination="false">
+        <description>Trigger a GCS failsafe</description>
+        <param index="1">Empty.</param>
+        <param index="2">Empty.</param>
+        <param index="3">Empty.</param>
+        <param index="4">Empty.</param>
+        <param index="5">Empty.</param>
+        <param index="6">Empty.</param>
+        <param index="7">Empty.</param>
+      </entry>
+      <entry value="13132" name="MAV_CMD_KHA_REQUEST_ADSB_ICAO_ID" hasLocation="false" isDestination="false">
+        <description>Request ADSB ICAO ID</description>
+        <param index="1">Empty.</param>
+        <param index="2">Empty.</param>
+        <param index="3">Empty.</param>
+        <param index="4">Empty.</param>
+        <param index="5">Empty.</param>
+        <param index="6">Empty.</param>
+        <param index="7">Empty.</param>
+      </entry>
+    </enum>
     <enum name="SWARM_VEHICLE_STATE">
       <description>Status of what an individual swarm vehicle is doing.</description>
       <entry value="0" name="SWARM_VEHICLE_STATE_UNKNOWN">
@@ -118,7 +150,7 @@
       </entry>
     </enum>
   </enums>
-
+  
   <messages>
     <message id="2820" name="SWARM_VEHICLE">
       <description>Position of an aircraft in swarm.</description>
