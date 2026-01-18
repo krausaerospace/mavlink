@@ -6,6 +6,33 @@
   <!-- mavlink ID range: 131300 - 131399                              -->
   <include>common.xml</include>
   <enums>
+    <enum name="WAYPOINT_JUMP_TAG">
+      <entry value="100" name="WAYPOINT_JUMP_TAG_TAKEOFF_COMPLETE"/>
+      <entry value="101" name="WAYPOINT_JUMP_TAG_LANDING_START"/>
+      <entry value="102" name="WAYPOINT_JUMP_TAG_LANDING_STARTED"/>
+      <entry value="103" name="WAYPOINT_JUMP_TAG_PRE_LANDING"/>
+      <entry value="200" name="WAYPOINT_JUMP_TAG_DETERMINE_LAND_DIRECTION"/>
+      <entry value="300" name="WAYPOINT_JUMP_TAG_PRIMARY_LANDING"/>
+      <entry value="301" name="WAYPOINT_JUMP_TAG_REVERSE_LANDING"/>
+      <entry value="310" name="WAYPOINT_JUMP_TAG_PRIMARY_LANDING_DESCENT"/>
+      <entry value="311" name="WAYPOINT_JUMP_TAG_REVERSE_LANDING_DESCENT"/>
+      <entry value="321" name="WAYPOINT_JUMP_TAG_LANDING_CALIBRATION_START"/>
+      <entry value="322" name="WAYPOINT_JUMP_TAG_LANDING_FINAL"/>
+      <entry value="400" name="WAYPOINT_JUMP_TAG_MEASURE_AGL_START"/>
+      <entry value="401" name="WAYPOINT_JUMP_TAG_MEASURE_AGL_END"/>
+      <entry value="900" name="WAYPOINT_JUMP_TAG_TASK_MISSION_COMPLETE"/>
+      <entry value="1000" name="WAYPOINT_JUMP_TAG_CUSTOM_0"/>
+      <entry value="1001" name="WAYPOINT_JUMP_TAG_CUSTOM_1"/>
+      <entry value="1002" name="WAYPOINT_JUMP_TAG_CUSTOM_2"/>
+      <entry value="1003" name="WAYPOINT_JUMP_TAG_CUSTOM_3"/>
+      <entry value="1004" name="WAYPOINT_JUMP_TAG_CUSTOM_4"/>
+      <entry value="1005" name="WAYPOINT_JUMP_TAG_CUSTOM_5"/>
+      <entry value="1006" name="WAYPOINT_JUMP_TAG_CUSTOM_6"/>
+      <entry value="1007" name="WAYPOINT_JUMP_TAG_CUSTOM_7"/>
+      <entry value="1008" name="WAYPOINT_JUMP_TAG_CUSTOM_8"/>
+      <entry value="1009" name="WAYPOINT_JUMP_TAG_CUSTOM_9"/>
+      <entry value="1331" name="WAYPOINT_JUMP_TAG_VTOL_TACTICAL_LOITER_LAND"/>
+    </enum>
     <enum name="MAV_CMD">
       <entry value="13130" name="MAV_CMD_KHA_LATENCY_CHECK" hasLocation="false" isDestination="false">
         <description>For round trip latency check</description>
