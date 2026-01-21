@@ -226,5 +226,10 @@
       <field type="float" name="airspeed1" units="m/s">Vehicle airspeed 1 speed in form appropriate for vehicle type. For standard aircraft this is typically calibrated airspeed (CAS) or indicated airspeed (IAS) - either of which can be used by a pilot to estimate stall speed.</field>
       <field type="float" name="airspeed2" units="m/s">Vehicle airspeed 2 speed in form appropriate for vehicle type. For standard aircraft this is typically calibrated airspeed (CAS) or indicated airspeed (IAS) - either of which can be used by a pilot to estimate stall speed.</field>
     </message>
+    <message id="131302" name="LOG_THIS_STRING">
+      <description>Non-functional message from the GCS for the vehicle to log locally</description>
+      <field type="uint8_t" name="echo">If non-zero, also echo this string to all mavlink ports as a STATUSTEXT.</field>
+      <field type="char[50]" name="the_string">String to log</field>
+    </message>
   </messages>
 </mavlink>
