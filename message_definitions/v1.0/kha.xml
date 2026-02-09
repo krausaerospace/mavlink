@@ -64,6 +64,16 @@
         <param index="6">Empty.</param>
         <param index="7">Empty.</param>
       </entry>
+      <entry value="13133" name="MAV_CMD_KHA_BATTERY_RESET" hasLocation="false" isDestination="false">
+        <description>Reset battery capacity for batteries that accumulate consumed battery via integration.</description>
+        <param index="1" label="index">index of battery to reset, 0 = all batteries, first battery is 1</param>
+        <param index="2" label="percentage">percentage to reset to, 0-100</param>
+        <param index="3">Empty.</param>
+        <param index="4">Empty.</param>
+        <param index="5">Empty.</param>
+        <param index="6">Empty.</param>
+        <param index="7">Empty.</param>
+      </entry>
     </enum>
     <enum name="SWARM_VEHICLE_STATE">
       <description>Status of what an individual swarm vehicle is doing.</description>
