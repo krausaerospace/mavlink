@@ -34,6 +34,16 @@
       <entry value="1331" name="WAYPOINT_JUMP_TAG_VTOL_TACTICAL_LOITER_LAND"/>
     </enum>
     <enum name="MAV_CMD">
+      <entry value="91" name="MAV_CMD_NAV_LOITER_TIME_MIN" hasLocation="true" isDestination="true">
+        <description>Loiter around this waypoint for X minutes, at a specified radius. Identical to MAV_CMD_NAV_LOITER_TIME except that the loiter duration is expressed in minutes rather than seconds, which frees enough mission storage to carry a per-command radius. Duration is stored with one minute of resolution.</description>
+        <param index="1" label="Time" units="min" minValue="0" maxValue="255" increment="1">Loiter time in minutes.</param>
+        <param index="2">Empty</param>
+        <param index="3" label="Radius" units="m">Radius around waypoint. If positive loiter clockwise, else counter-clockwise. 0 means use the vehicle default loiter radius. Radii above 255m are stored with 10m of resolution.</param>
+        <param index="4" label="Xtrack Location" minValue="0" maxValue="1" increment="1">Forward moving aircraft this sets exit xtrack location: 0 for center of loiter wp, 1 for exit location.</param>
+        <param index="5" label="Latitude">Latitude</param>
+        <param index="6" label="Longitude">Longitude</param>
+        <param index="7" label="Altitude" units="m">Altitude</param>
+      </entry>
       <entry value="13130" name="MAV_CMD_KHA_LATENCY_CHECK" hasLocation="false" isDestination="false">
         <description>For round trip latency check</description>
         <param index="1">Empty.</param>
