@@ -74,6 +74,16 @@
         <param index="6">Empty.</param>
         <param index="7">Empty.</param>
       </entry>
+      <entry value="13133" name="MAV_CMD_KHA_REQUEST_ALTITUDE_SOURCE" hasLocation="false" isDestination="false">
+        <description>Request current altitude source</description>
+        <param index="1">Empty.</param>
+        <param index="2">Empty.</param>
+        <param index="3">Empty.</param>
+        <param index="4">Empty.</param>
+        <param index="5">Empty.</param>
+        <param index="6">Empty.</param>
+        <param index="7">Empty.</param>
+      </entry>
     </enum>
     <enum name="SWARM_VEHICLE_STATE">
       <description>Status of what an individual swarm vehicle is doing.</description>
