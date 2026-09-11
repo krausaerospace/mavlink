@@ -241,5 +241,9 @@
       <field type="uint8_t" name="echo">If non-zero, also echo this string to all mavlink ports as a STATUSTEXT.</field>
       <field type="char[50]" name="the_string">String to log</field>
     </message>
+    <message id="131303" name="ALT_SRC">
+      <description>Active altitude measurement source of the primary EKF3 core. Sent by the vehicle to the GCS.</description>
+      <field type="uint8_t" name="source">0=None, 1=Barometer, 2=Rangefinder, 3=GPS, 4=Beacon, 6=ExternalNav, 255=Unknown or unavailable (including when EKF3 is not active).</field>
+    </message>
   </messages>
 </mavlink>
