@@ -267,8 +267,8 @@
     </message>
     <message id="131303" name="ALTITUDE_SOURCE">
       <description>Active altitude measurement source of the primary EKF3 core. Sent by the vehicle to the GCS.</description>
-      <field type="uint8_t" name="source" enum="ALTITUDE_SOURCE">Altitude source flags</field>
-      <field type="uint8_t" name="index">Zero-based index within the altitude source (255 = unkown)</field>
+      <field type="uint8_t" name="source" enum="ALTITUDE_SOURCE">Active altitude measurement source</field>
+      <field type="uint8_t" name="index">Zero-based sensor index within the selected altitude source (255 = unknown or not applicable)</field>
     </message>
   </messages>
 </mavlink>
