@@ -186,6 +186,30 @@
         <description>0x20 Airspeed 2 is Primary Sensor</description>
       </entry>
     </enum>
+    <enum name="ALTITUDE_SOURCE">
+      <description>Selected altitude source.</description>
+      <entry value="0" name="ALTITUDE_SOURCE_NONE">
+        <description>No altitude measurement source selected.</description>
+      </entry>
+      <entry value="1" name="ALTITUDE_SOURCE_BAROMETER">
+        <description>Barometric altitude.</description>
+      </entry>
+      <entry value="2" name="ALTITUDE_SOURCE_RANGEFINDER">
+        <description>Altitude derived from a rangefinder measurement.</description>
+      </entry>
+      <entry value="3" name="ALTITUDE_SOURCE_GPS">
+        <description>GPS altitude.</description>
+      </entry>
+      <entry value="4" name="ALTITUDE_SOURCE_BEACON">
+        <description>Altitude derived from a beacon positioning system.</description>
+      </entry>
+      <entry value="6" name="ALTITUDE_SOURCE_EXTERNAL_NAV">
+        <description>Altitude supplied by an external navigation system to the EKF.</description>
+      </entry>
+      <entry value="255" name="ALTITUDE_SOURCE_UNKNOWN">
+        <description>Altitude source unknown or unavailable, including when EKF3 is not active.</description>
+      </entry>
+    </enum>
   </enums>
   
   <messages>
@@ -240,6 +264,11 @@
       <description>Non-functional message from the GCS for the vehicle to log locally</description>
       <field type="uint8_t" name="echo">If non-zero, also echo this string to all mavlink ports as a STATUSTEXT.</field>
       <field type="char[50]" name="the_string">String to log</field>
+    </message>
+    <message id="131303" name="ALTITUDE_SOURCE">
+      <description>Active altitude measurement source of the primary EKF3 core. Sent by the vehicle to the GCS.</description>
+      <field type="uint8_t" name="source" enum="ALTITUDE_SOURCE">Active altitude measurement source</field>
+      <field type="uint8_t" name="index">Zero-based sensor index within the selected altitude source (255 = unknown or not applicable)</field>
     </message>
   </messages>
 </mavlink>
