@@ -186,27 +186,27 @@
         <description>0x20 Airspeed 2 is Primary Sensor</description>
       </entry>
     </enum>
-    <enum name="ALTITUDE_SOURCE">
+    <enum name="ALTITUDE_SOURCE_TYPE">
       <description>Selected altitude source.</description>
-      <entry value="0" name="ALTITUDE_SOURCE_NONE">
+      <entry value="0" name="ALTITUDE_SOURCE_TYPE_NONE">
         <description>No altitude measurement source selected.</description>
       </entry>
-      <entry value="1" name="ALTITUDE_SOURCE_BAROMETER">
+      <entry value="1" name="ALTITUDE_SOURCE_TYPE_BAROMETER">
         <description>Barometric altitude.</description>
       </entry>
-      <entry value="2" name="ALTITUDE_SOURCE_RANGEFINDER">
+      <entry value="2" name="ALTITUDE_SOURCE_TYPE_RANGEFINDER">
         <description>Altitude derived from a rangefinder measurement.</description>
       </entry>
-      <entry value="3" name="ALTITUDE_SOURCE_GPS">
+      <entry value="3" name="ALTITUDE_SOURCE_TYPE_GPS">
         <description>GPS altitude.</description>
       </entry>
-      <entry value="4" name="ALTITUDE_SOURCE_BEACON">
+      <entry value="4" name="ALTITUDE_SOURCE_TYPE_BEACON">
         <description>Altitude derived from a beacon positioning system.</description>
       </entry>
-      <entry value="6" name="ALTITUDE_SOURCE_EXTERNAL_NAV">
+      <entry value="6" name="ALTITUDE_SOURCE_TYPE_EXTERNAL_NAV">
         <description>Altitude supplied by an external navigation system to the EKF.</description>
       </entry>
-      <entry value="255" name="ALTITUDE_SOURCE_UNKNOWN">
+      <entry value="255" name="ALTITUDE_SOURCE_TYPE_UNKNOWN">
         <description>Altitude source unknown or unavailable, including when EKF3 is not active.</description>
       </entry>
     </enum>
@@ -267,7 +267,7 @@
     </message>
     <message id="131303" name="ALTITUDE_SOURCE">
       <description>Active altitude measurement source of the primary EKF3 core. Sent by the vehicle to the GCS.</description>
-      <field type="uint8_t" name="source" enum="ALTITUDE_SOURCE">Active altitude measurement source</field>
+      <field type="uint8_t" name="source" enum="ALTITUDE_SOURCE_TYPE">Active altitude measurement source</field>
       <field type="uint8_t" name="index">Zero-based sensor index within the selected altitude source (255 = unknown or not applicable)</field>
     </message>
   </messages>
