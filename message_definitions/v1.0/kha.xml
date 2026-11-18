@@ -210,6 +210,21 @@
         <description>Altitude source unknown or unavailable, including when EKF3 is not active.</description>
       </entry>
     </enum>
+    <enum name="LENS_TYPE">
+      <description>Active camera lens.</description>
+      <entry value="0" name="LENS_TYPE_DEFAULT">
+        <description>Default camera lens.</description>
+      </entry>
+      <entry value="1" name="LENS_TYPE_RGB">
+        <description>RGB camera lens.</description>
+      </entry>
+      <entry value="2" name="LENS_TYPE_IR">
+        <description>Infrared camera lens.</description>
+      </entry>
+      <entry value="255" name="LENS_TYPE_UNKNOWN">
+        <description>Camera lens unknown or unavailable.</description>
+      </entry>
+    </enum>
   </enums>
   
   <messages>
@@ -269,6 +284,10 @@
       <description>Active altitude measurement source of the primary EKF3 core. Sent by the vehicle to the GCS.</description>
       <field type="uint8_t" name="source" enum="ALTITUDE_SOURCE_TYPE">Active altitude measurement source</field>
       <field type="uint8_t" name="index">Zero-based sensor index within the selected altitude source (255 = unknown or not applicable)</field>
+    </message>
+    <message id="131304" name="TRILLIUM_STATUS">
+      <description>Trillium camera status information.</description>
+      <field type="uint8_t" name="lens" enum="LENS_TYPE">Active camera lens</field>
     </message>
   </messages>
 </mavlink>
